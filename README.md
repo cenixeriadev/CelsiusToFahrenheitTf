@@ -1,6 +1,11 @@
 # 🌡️ Conversor Celsius-Fahrenheit con TensorFlow
 
 Proyecto de DeepLearning que convierte temperaturas usando un modelo neuronal entrenado con datos de Hugging Face.
+![image](https://github.com/user-attachments/assets/d5483deb-eafd-4fa7-aacb-ac0774765a27)
+
+![image](https://github.com/user-attachments/assets/8c21ec4a-8ed2-4ba0-ab99-d4f3f83307ad)
+
+
 
 ## 🔗 Dataset Original
 Dataset usado: [prabinpanta0/celsius-to-fahrenheit](https://huggingface.co/datasets/prabinpanta0/celsius-to-fahrenheit) en Hugging Face
