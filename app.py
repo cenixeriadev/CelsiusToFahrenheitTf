@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 def load_model():
     
-    model_path = os.path.join("models", "celsius_to_fahrenheit_model.h5")
+    model_path = os.path.join("models", "celsius_to_fahrenheit_model.keras")
 
 
     if os.path.exists(model_path):
