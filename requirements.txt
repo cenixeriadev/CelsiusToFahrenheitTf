@@ -74,7 +74,7 @@ pytz==2025.2
 pywin32==310
 PyYAML==6.0.2
 pyzmq==26.4.0
-requests==2.32.3
+requests==2.32.4
 rich==14.0.0
 scikit-learn==1.7.0
 scipy==1.15.3
