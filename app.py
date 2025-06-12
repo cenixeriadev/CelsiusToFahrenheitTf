@@ -11,7 +11,7 @@ def load_model():
 
     if os.path.exists(model_path):
         try:
-            model = tf.keras.models.load_model(model_path)
+            model = tf.keras.models.load_model(model_path , compile = False)
             print(f"Modelo cargado exitosamente desde: {model_path}")
             return model
         except Exception as e:
