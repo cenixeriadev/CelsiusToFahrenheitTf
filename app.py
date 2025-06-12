@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 def load_tflite_model():
-    model_path = os.path.join("models", "model.tflite")
+    model_path = os.path.join("models", "celsius_to_fahrenheit_model.tflite")
     interpreter = tf.lite.Interpreter(model_path=model_path)
     interpreter.allocate_tensors()
     return interpreter
