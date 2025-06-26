@@ -1,9 +1,21 @@
-from flask import Flask, render_template, request
+from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 import tensorflow as tf
 import numpy as np
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
+
+# Configure CORS
+FLASK_ENV = os.getenv('FLASK_ENV', 'development')
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
+
+if FLASK_ENV == 'development':
+    CORS(app, resources={r"/*": {"origins": FRONTEND_URL}})
 def load_tflite_model():
     model_path = os.path.join("models", "celsius_to_fahrenheit_model.tflite")
     interpreter = tf.lite.Interpreter(model_path=model_path)
@@ -36,39 +48,27 @@ if tflite_interpreter is None:
     print("Error: No se pudo cargar el interprete del modelo TFLite.")
 
 
-@app.route('/' , methods=['GET' , 'POST'])
-def index():
-
-    return render_template('index.html')
-
-@app.route('/predict', methods=['GET','POST'])
+@app.route('/api/predict', methods=['POST'])
 def predict():
     global tflite_interpreter
+    try:
+        celsius = float(request.json.get('celsius', 0))
 
-    result = None
-    error = None
-    
-    if request.method == 'POST':
-        try:
-            celsius = float(request.form.get('celsius', 0))
+        if tflite_interpreter is None:
+            raise Exception("Modelo TFLite no disponible")
 
-            if tflite_interpreter is None:
-                raise Exception("Modelo TFLite no disponible")
-            
-            fahrenheit = predict_temperature(tflite_interpreter, celsius)
+        fahrenheit = predict_temperature(tflite_interpreter, celsius)
 
-            result = {
-                'celsius': celsius,
-                'fahrenheit': round(fahrenheit, 2),
-                'success': True
-            }
+        return jsonify({
+            'celsius': celsius,
+            'fahrenheit': round(fahrenheit, 2),
+            'success': True
+        })
 
-        except ValueError:
-            error = "Por favor ingresa un número válido para la temperatura"
-        except Exception as e:
-            error = f"Error en la predicción: {str(e)}"
-    
-    return render_template('index.html', result=result, error=error)
+    except ValueError:
+        return jsonify({'error': "Por favor ingresa un número válido para la temperatura"}), 400
+    except Exception as e:
+        return jsonify({'error': f"Error en la predicción: {str(e)}"}), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
