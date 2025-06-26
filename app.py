@@ -14,8 +14,9 @@ app = Flask(__name__)
 FLASK_ENV = os.getenv('FLASK_ENV', 'development')
 FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
 
-if FLASK_ENV == 'development':
-    CORS(app, resources={r"/*": {"origins": FRONTEND_URL}})
+
+CORS(app, origins=[FRONTEND_URL] , methods=['GET', 'POST'])
+
 def load_tflite_model():
     model_path = os.path.join("models", "celsius_to_fahrenheit_model.tflite")
     interpreter = tf.lite.Interpreter(model_path=model_path)
