@@ -15,7 +15,7 @@ FLASK_ENV = os.getenv('FLASK_ENV', 'development')
 FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
 
 
-CORS(app, origins=[FRONTEND_URL] , methods=['GET', 'POST'])
+CORS(app, origins=[FRONTEND_URL] ,allow_headers=['Content-Type'], methods=['GET', 'POST'])
 
 def load_tflite_model():
     model_path = os.path.join("models", "celsius_to_fahrenheit_model.tflite")
