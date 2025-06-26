@@ -1,5 +1,7 @@
 # 🌡️ Conversor Celsius-Fahrenheit con TensorFlow
 
+Proyecto de DeepLearning que convierte temperaturas usando un modelo neuronal entrenado con datos de Hugging Face. Ahora con frontend React + TypeScript y una API REST con Flask.
+
 Proyecto de DeepLearning que convierte temperaturas usando un modelo neuronal entrenado con datos de Hugging Face.
 ![image](https://github.com/user-attachments/assets/d5483deb-eafd-4fa7-aacb-ac0774765a27)
 
@@ -12,6 +14,7 @@ Dataset usado: [prabinpanta0/celsius-to-fahrenheit](https://huggingface.co/datas
 
 ## 🛠️ Configuración Requerida
 - **Python**: 3.9-3.12 (No compatible con 3.13+)
+- **Node.js**: 14+ y npm
 - **Jupyter Notebooks**: Si es posible armar el setup en VisualStudioCode debido a que alli lo desarrolle.
 
 ## 🏹 Como correr el proyecto
@@ -32,16 +35,21 @@ Dataset usado: [prabinpanta0/celsius-to-fahrenheit](https://huggingface.co/datas
     pip install -r requirements.txt
     ```
 - **Ejecucion de la aplicación**
-  - Corremos la aplicacion con flask:
+  - Corremos el backend con flask:
     ```bash
     flask --app app run
     ```
-  - Abrimos nuestro navegador y buscamos en:
-    ```txt
-    http://localhost:5000/
-    
+  - En otra terminal, instalamos y ejecutamos el frontend:
+    ```bash
+    cd frontend
+    npm install
+    npm run dev
     ```
-Listo! tienes para probar el modelo con una interfaz de usuario amigable y realizada con flask.
+  - Abrimos nuestro navegador y accedemos a:
+    ```txt
+    http://localhost:5173/
+    ```
+Listo! tienes para probar el modelo con una interfaz de usuario amigable desarrollada con React + TypeScript, que consume la API REST de Flask.
 
 ## 📄Licencia
 Este proyecto está licenciado bajo la licencia MIT: consulte el archivo [LICENSE](LICENSE) para obtener más detalles.
