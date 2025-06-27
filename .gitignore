@@ -195,3 +195,4 @@ cython_debug/
 
 #React
 node_modules
+.vscode
