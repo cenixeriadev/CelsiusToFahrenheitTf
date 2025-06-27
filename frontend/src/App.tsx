@@ -1,6 +1,7 @@
 import { useState} from 'react'
 import type {FormEvent} from 'react';
-import type{ temperatureService, ConversionResponse, ErrorResponse } from './services/api';
+import type{ ConversionResponse, ErrorResponse } from './services/api';
+import {temperatureService} from './services/api';
 
 function App() {
   const [celsius, setCelsius] = useState<string>('');
